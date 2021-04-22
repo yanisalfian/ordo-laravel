@@ -1,0 +1,7 @@
+@mixin secondaryBackground {
+  background-color: $secondaryColor !important;
+}
+
+@mixin primaryBackground {
+  background-color: $primaryColor !important;
+}

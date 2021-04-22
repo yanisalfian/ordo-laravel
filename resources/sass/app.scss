@@ -1,0 +1,361 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import '~@mdi/font/scss/materialdesignicons';
+@import '_variables';
+@import '~bootstrap/scss/bootstrap';
+@import '_mixins';
+
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+html {
+  -ms-overflow-style: none;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.discount-container {
+  height: 200px;
+  position: relative;
+  
+  #discount-content {
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+    padding-top: 3px;
+    user-select: none;
+    
+    .slide-content {
+      display: inline-block;
+      width: 300px;
+      height: 200px;
+      background-color: #dbc3e3;
+    }
+  }
+  
+  .nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+  
+    &#prevButton {
+      left: -30px;
+    }
+
+    &#nextButton {
+      right: 0px;
+    }
+  }
+}
+
+.discount-card {
+  display: inline-block;
+  width: 240px;
+  position: relative;
+  background-color: #dbc3e3;
+  margin-right: 12px;
+}
+
+.discount-image {
+  height: 150px;
+  width: 100%;
+  background-color: white;
+  background-size: cover;
+}
+
+.discount-title {
+  min-height: 40px;
+  width: 100%;
+  background-color: $primary;
+  font-size: 11px;
+}
+
+.ribbon {
+  position: absolute;
+  right: 10px;
+  top: -3px;
+  filter: drop-shadow(2px 3px 2px rgba(black, 0.5));
+  > .content {
+    padding-top: 7px;
+    background-color: $yellow;
+    color: rgba($color: $primary, $alpha: .6);
+    min-width: 42px;
+    min-height: 56px;
+    font-size: 13px;
+    font-weight: 600;
+
+    div {
+      margin: 0px 8px;
+      line-height: 1.3;
+    }
+  }
+
+  &.up > .content {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 8px), 0 100%);
+  }
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  .profile-container {
+    background-color: $secondary;
+    border-radius: 15px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    padding: 0px 4px;
+    margin-right: 10px;
+  }
+  .avatar{
+    height: 24px;
+    width: 24px;
+    margin: 4px;
+    background-color: $primary;
+    background-image: url('https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-4.png');
+    background-size: cover;
+    border-radius: 50%;
+  }
+
+  .btn {
+    font-size: 12px;
+  }
+}
+
+#toggle-sidebar {
+  cursor: pointer;
+}
+
+.input-container {
+  @include secondaryBackground();
+  min-height: 30px;
+  min-width: 100px;
+  border-radius: 10px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+
+  .navbar & {
+    margin-left: 52px;
+  }
+
+  input {
+    background: transparent;
+    border: none;
+    font-size: 12px;
+
+    .navbar & {
+      min-width: 400px;
+    }
+
+    &:focus {
+      outline:0px !important;
+      -webkit-appearance:none;
+      box-shadow: none !important;
+    }
+
+    &::placeholder { 
+      color: white;
+      opacity: .7;
+    }
+  }
+}
+
+.main {
+  padding-left: $sidebar-width;
+  padding-top: $toolbar-height;
+  transition: all 0.4s ease;
+
+  &.no-sidebar {
+    padding-left: 0px;  
+  }
+  @include media-breakpoint-down(md){
+    padding-left: 0px;
+  }
+}
+
+.sidebar {
+  background-color: #dbc3e3; 
+  padding: 0px;
+  width: $sidebar-width;
+  position: fixed;
+  left: 0;
+  top: $toolbar-height;
+  transition: all 0.5s ease;
+
+  @include media-breakpoint-down(md){
+    width: 0px;
+    display: none;
+  }
+
+  .sidebar-container {
+    padding: 10px;
+    position: relative;
+    height:calc(100vh - 106px);
+  }
+
+  .list-group {
+    border-radius: 10px;
+    font-size: 12px;
+
+    .list-group-item {
+      border: none;
+      background-color: $secondary;
+      color: rgba($color: white, $alpha: .7);
+      &:first-child {
+        background-color: $primary;
+      }
+      .mdi {
+        font-size: 15px;
+      }
+    }
+  }
+  
+  #footer {
+    height: 50px;
+    background-color: $primary;
+    padding: 10px;
+
+    .cart-container {
+      width: 100%;
+      background-color: $secondary;
+      border-radius: 20px;
+
+      .item-desc {
+        padding-left: 8px;
+        font-size: 11px;
+      }
+    }
+
+    .cart-icon {
+      width: 30px;
+      height: 30px;
+      color: $secondary;
+    }
+  }
+}
+
+.badge {
+  font-weight: normal;
+}
+
+h5 {
+  font-weight: 400;
+}
+
+hr.seperator {
+  width: 200px;
+  height: 2px;
+}
+
+#result-header {
+  span {
+    cursor: pointer;
+    &.mdi {
+      border: 2px solid white;
+      border-radius: 5px;
+      padding: 5px 8px;
+      margin-left: 8px;
+
+      &.active {
+        background-color: $primary;
+        border-color: $yellow;
+      }
+    }
+  }
+}
+
+#result-data {
+  > .row {
+    .my-col {
+      transition: all 0.5s ease;
+    }
+    .store-card {
+      min-height: 100px;
+      margin-bottom: 20px;
+      border-radius: $store-border-radius;
+      @include primaryBackground();
+      position: relative;
+    }
+  }
+}
+
+.store-image {
+  height: 140px;
+  width: 140px;
+  border-top-left-radius: $store-border-radius;
+  border-bottom-left-radius: $store-border-radius;
+  border-top-right-radius: 0px;
+  background-image: url('/images/placeholder.jpeg');
+  background-size: cover;
+  background-position: center;
+
+  &.grid {
+    width: 100%;
+    height: 150px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: $store-border-radius;
+  }
+}
+
+.store-content {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  &.grid {
+    position: relative;
+    top: 0;
+    transform: none;
+    padding: 10px;
+
+    .store-address {
+      font-size: 10px;
+    }
+  }
+
+  .store-category {
+    font-size: 9px;
+    color: $primary;
+    max-width: 120px;
+    background-color: $yellow;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 8px 3px;
+    font-weight: 500;
+  }
+
+  .store-address {
+    font-size: 11px;
+  }
+}
+
+.store-name {
+  font-weight: 600;
+  transition: all 0.5s ease;
+
+  .grid & {
+    font-size: 12px;
+  }
+}
+
+.five-col {
+  width: 20%;
+  padding-right: 10px;
+}
